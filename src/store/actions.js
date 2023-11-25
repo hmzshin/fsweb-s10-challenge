@@ -13,11 +13,13 @@ export function notSil(notId) {
 }
 
 export const notEkleAPI = (yeniNot) => (dispatch) => {
+  const arr = [];
   axios
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
+     console.log(res.data)
       if (res.status === 200) {
-        // res.data objesi içerisinden ihtiyaç duyduğunuz değeri bulun ve oluşturduğunuz notEkle ile dispatch edin
+        localStorage.setItem("notes", JSON.stringify(res.data));
       }
     })
     .catch((error) => console.log(error));
