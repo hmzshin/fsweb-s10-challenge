@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Post from "./Post";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const PostList = () => {
-  const notlar = useSelector((store)=> store.note)
-
+  let notlar = useSelector((store) => store.note);
   return notlar.length === 0 ? (
     <div className="beyazKutu text-center p-6">Hiç notunuz yok</div>
   ) : (

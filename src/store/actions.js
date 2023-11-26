@@ -3,7 +3,11 @@ import { useDispatch } from "react-redux";
 
 export const NOT_EKLE = "NOT_EKLE";
 export const NOT_SIL = "NOT_SIL";
+export const LOCAL_NOT = "LOCAL_NOT";
 
+export function notlocal(notlar) {
+  return { type: LOCAL_NOT, payload: notlar };
+}
 export function notEkle(not) {
   return { type: NOT_EKLE, payload: not };
 }
