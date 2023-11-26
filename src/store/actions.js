@@ -17,9 +17,9 @@ export const notEkleAPI = (yeniNot) => (dispatch) => {
   axios
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
-     console.log(res.data)
+      console.log("this is data ", res.data.data);
       if (res.status === 200) {
-        localStorage.setItem("notes", JSON.stringify(res.data));
+        localStorage.setItem("notes", JSON.stringify(res.data.data));
       }
     })
     .catch((error) => console.log(error));
