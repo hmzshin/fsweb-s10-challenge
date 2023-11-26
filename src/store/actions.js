@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export const NOT_EKLE = "NOT_EKLE";
 export const NOT_SIL = "NOT_SIL";
@@ -27,6 +28,11 @@ export const notEkleAPI = (yeniNot) => (dispatch) => {
       exist.push(yeniNot);
       if (res.status === 200) {
         localStorage.setItem("notes", JSON.stringify(exist));
+        toast.success("not başaıyla eklendi", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+        });
       }
     })
     .catch((error) => console.log(error));
@@ -44,6 +50,11 @@ export const notSilAPI = (id) => (dispatch) => {
       console.log("silme", res.data);
       if (res.status === 200) {
         localStorage.setItem("notes", JSON.stringify(newArr));
+        toast.warn("not başaıyla silindi", {
+          position: "top-right",
+          autoClose: 3000,
+          theme: "colored",
+        });
       }
     })
     .catch((error) => console.log(error));
