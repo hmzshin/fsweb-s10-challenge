@@ -33,8 +33,13 @@ export const notSilAPI = (id) => (dispatch) => {
   axios
     .delete("https://httpbin.org/anything", { data: id })
     .then((res) => {
+      const exist = JSON.parse(localStorage.getItem("notes"));
+      console.log("existing data", exist);
+      const newArr = exist.filter((note) => note.id != id);
+
+      console.log("silme", res.data);
       if (res.status === 200) {
-        // res.data objesi içerisinden ihtiyaç duyduğunuz değeri bulun ve oluşturduğunuz notSil ile dispatch edin
+        localStorage.setItem("notes", JSON.stringify(newArr));
       }
     })
     .catch((error) => console.log(error));
