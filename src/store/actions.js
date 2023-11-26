@@ -13,13 +13,16 @@ export function notSil(notId) {
 }
 
 export const notEkleAPI = (yeniNot) => (dispatch) => {
-  const arr = [];
   axios
     .post("https://httpbin.org/anything", yeniNot)
     .then((res) => {
-      console.log("this is data ", res.data.data);
+      const exist = localStorage.getItem("notes")
+        ? JSON.parse(localStorage.getItem("notes"))
+        : [];
+      console.log("existing data", exist);
+      exist.push(yeniNot);
       if (res.status === 200) {
-        localStorage.setItem("notes", JSON.stringify(res.data.data));
+        localStorage.setItem("notes", JSON.stringify(exist));
       }
     })
     .catch((error) => console.log(error));
